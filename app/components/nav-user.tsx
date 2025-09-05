@@ -1,5 +1,3 @@
-"use client"
-
 import {
   BadgeCheck,
   Bell,
@@ -7,13 +5,10 @@ import {
   CreditCard,
   LogOut,
   Sparkles,
-} from "lucide-react"
+} from "lucide-react";
+import { Form, redirect, useNavigate } from "react-router";
 
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "~/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,24 +17,41 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "~/components/ui/dropdown-menu"
+} from "~/components/ui/dropdown-menu";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "~/components/ui/sidebar"
+} from "~/components/ui/sidebar";
+import type { Route } from "../+types/root";
+import axios from "axios";
+import API_URL from "~/lib/api_url";
+import axiosInstance from "~/lib/axios";
 
-export function NavUser({
+export default function NavUser({
   user,
 }: {
   user: {
-    name: string
-    email: string
-    avatar: string
-  }
+    name: string;
+    email: string;
+    avatar: string;
+  };
 }) {
-  const { isMobile } = useSidebar()
+  const navigate = useNavigate();
+  const { isMobile } = useSidebar();
+
+  const handleLogout = async () => {
+    await axiosInstance.post("logout");
+    // const res = await axiosInstance.get("user");
+    // const res = await axiosInstance.post("products", {
+    //   name: "",
+    //   description: "",
+    // });
+    // console.log(res.data);
+
+    navigate("/");
+  };
 
   return (
     <SidebarMenu>
@@ -102,7 +114,8 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+
+            <DropdownMenuItem onClick={handleLogout}>
               <LogOut />
               Log out
             </DropdownMenuItem>
@@ -110,5 +123,5 @@ export function NavUser({
         </DropdownMenu>
       </SidebarMenuItem>
     </SidebarMenu>
-  )
+  );
 }
