@@ -4,17 +4,28 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import axiosInstance from "~/lib/axios";
 
 const authStore = (set: any) => ({
-  isLoggedIn: false,
+  isLoggedIn: true,
   loading: false,
+  user: null,
+
   fetchUser: async () => {
     set({ loading: true });
-    const res = await axiosInstance
-      .get("user")
-      .then(() => set({ isLoggedIn: true }))
-      .catch((e) => {
-        set({ isLoggedIn: false });
-        return e;
+    try {
+      const res = await axiosInstance.get("user");
+      set({
+        isLoggedIn: true,
+        user: res.data,
+        loading: false,
       });
+      return res.data;
+    } catch (e) {
+      set({
+        isLoggedIn: false,
+        user: null,
+        loading: false,
+      });
+      return null;
+    }
   },
 });
 
