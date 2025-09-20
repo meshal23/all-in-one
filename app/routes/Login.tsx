@@ -53,6 +53,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     baseURL: "http://localhost:8000",
   });
   const formData = await request.formData();
+  
   try {
     // get csrf cookie to prevernt csrf attacks
     // when you use frontend, backend seperately
@@ -61,7 +62,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
     console.log("validatedData", validatedData);
     console.log("registerData", regData);
 
-    // register user
+    // login user
     const response = await axiosInstance({
       method: "post",
       url: "/login",
@@ -70,6 +71,8 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
 
     console.log(response.data);
     console.log(response.status);
+
+    localStorage.setItem("userLoggedIn", "true");
 
     return redirect("/admin");
   } catch (e) {
