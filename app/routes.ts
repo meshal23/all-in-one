@@ -21,7 +21,11 @@ export default [
       route("/payment-types", "routes/payment-types/ThePaymentTypes.tsx"),
       route("/coupon-voucher", "routes/coupon-voucher/TheCouponVoucher.tsx"),
       route("/products", "routes/products/TheProduct.tsx", [
-        index("routes/products/AddProduct.tsx"),
+        route("add-product", "routes/products/AddProduct.tsx", [
+          route("step-1", "routes/products/form-steps/StepOne.tsx"),
+          route("step-2", "routes/products/form-steps/StepTwo.tsx"),
+          route("step-3", "routes/products/form-steps/StepThree.tsx"),
+        ]),
       ]),
       route("/promotion", "routes/promotion/ThePromotion.tsx"),
       route("/dotd", "routes/deal-of-the-day/TheDealOfTheDay.tsx"),
