@@ -6,11 +6,12 @@ interface TextInputProps {
   type: string;
   id: string;
   name: string;
-  value: string | number;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | number;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeHolder?: string;
   className?: string;
   required?: boolean;
+  ref?: any;
 }
 
 const TextInput: FC<TextInputProps> = ({
@@ -23,6 +24,7 @@ const TextInput: FC<TextInputProps> = ({
   placeHolder,
   className,
   required = false,
+  ref,
 }: TextInputProps) => {
   return (
     <>
@@ -33,6 +35,7 @@ const TextInput: FC<TextInputProps> = ({
         {title}
       </label>
       <input
+        ref={ref}
         type={type}
         name={name}
         value={value}
