@@ -37,147 +37,38 @@ import {
   TableHeader,
   TableRow,
 } from "../../components/ui/table";
+import { Form, useNavigate } from "react-router";
+import TableSkeleton from "../main/TableSkeleton";
+import type { Route } from "../../routes/products/+types/TheProduct";
 
-// const data: Payment[] = [
-//   {
-//     id: "m5gr84i9",
-//     amount: 316,
-//     status: "success",
-//     email: "ken99@example.com",
-//   },
-//   {
-//     id: "3u1reuv4",
-//     amount: 242,
-//     status: "success",
-//     email: "Abe45@example.com",
-//   },
-//   {
-//     id: "derv1ws0",
-//     amount: 837,
-//     status: "processing",
-//     email: "Monserrat44@example.com",
-//   },
-//   {
-//     id: "5kma53ae",
-//     amount: 874,
-//     status: "success",
-//     email: "Silas22@example.com",
-//   },
-//   {
-//     id: "bhqecj4p",
-//     amount: 721,
-//     status: "failed",
-//     email: "carmella@example.com",
-//   },
-// ];
+// export async function clientLoader({ request }: Route.ClientLoaderArgs) {
+//   const url = new URL(request.url);
+//   const search = url.searchParams.get("search");
 
-// export type Payment = {
-//   id: string;
-//   amount: number;
-//   status: "pending" | "processing" | "success" | "failed";
-//   email: string;
-// };
-
-// export const columns: ColumnDef<Payment>[] = [
-//   {
-//     id: "select",
-//     header: ({ table }) => (
-//       <Checkbox
-//         checked={
-//           table.getIsAllPageRowsSelected() ||
-//           (table.getIsSomePageRowsSelected() && "indeterminate")
-//         }
-//         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-//         aria-label="Select all"
-//       />
-//     ),
-//     cell: ({ row }) => (
-//       <Checkbox
-//         checked={row.getIsSelected()}
-//         onCheckedChange={(value) => row.toggleSelected(!!value)}
-//         aria-label="Select row"
-//       />
-//     ),
-//     enableSorting: false,
-//     enableHiding: false,
-//   },
-//   {
-//     accessorKey: "status",
-//     header: "Status",
-//     cell: ({ row }) => (
-//       <div className="capitalize">{row.getValue("status")}</div>
-//     ),
-//   },
-//   {
-//     accessorKey: "email",
-//     header: ({ column }) => {
-//       return (
-//         <Button
-//           variant="ghost"
-//           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-//         >
-//           Email
-//           <ArrowUpDown />
-//         </Button>
-//       );
-//     },
-//     cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
-//   },
-//   {
-//     accessorKey: "amount",
-//     header: () => <div className="text-right">Amount</div>,
-//     cell: ({ row }) => {
-//       const amount = parseFloat(row.getValue("amount"));
-//       // Format the amount as a dollar amount
-//       const formatted = new Intl.NumberFormat("en-US", {
-//         style: "currency",
-//         currency: "USD",
-//       }).format(amount);
-
-//       return <div className="text-right font-medium">{formatted}</div>;
-//     },
-//   },
-//   {
-//     id: "actions",
-//     enableHiding: false,
-//     cell: ({ row }) => {
-//       const payment = row.original;
-
-//       return (
-//         <DropdownMenu>
-//           <DropdownMenuTrigger asChild>
-//             <Button variant="ghost" className="h-8 w-8 p-0">
-//               <span className="sr-only">Open menu</span>
-//               <MoreHorizontal />
-//             </Button>
-//           </DropdownMenuTrigger>
-//           <DropdownMenuContent align="end">
-//             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-//             <DropdownMenuItem
-//               onClick={() => navigator.clipboard.writeText(payment.id)}
-//             >
-//               Copy payment ID
-//             </DropdownMenuItem>
-//             <DropdownMenuSeparator />
-//             <DropdownMenuItem>View customer</DropdownMenuItem>
-//             <DropdownMenuItem>View payment details</DropdownMenuItem>
-//           </DropdownMenuContent>
-//         </DropdownMenu>
-//       );
-//     },
-//   },
-// ];
+// }
 
 export function DataTable({
   data,
   columns,
   searchPlaceholder,
   searchColumn,
+  nextPageUrl,
+  nextCursor,
+  prevPageUrl,
+  prevCursor,
+  search,
+  setSearch,
 }: {
   data: any;
   columns: ColumnDef<any>[];
   searchPlaceholder?: string;
   searchColumn: string;
+  nextPageUrl: string;
+  nextCursor: string;
+  prevPageUrl: string;
+  prevCursor: string;
+  search?: string;
+  setSearch?: any;
 }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -205,18 +96,32 @@ export function DataTable({
       rowSelection,
     },
   });
+  const navigate = useNavigate();
+  const searchParamValue = new URLSearchParams(document.location.search).get(
+    "search"
+  );
+  console.log(searchParamValue);
 
   return (
     <div className="w-full">
       <div className="flex items-center py-4">
-        <Input
-          placeholder={searchPlaceholder}
-          value={(table.getColumn(searchColumn)?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn(searchColumn)?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
+        <Form method="get" role="search">
+          <Input
+            placeholder={searchPlaceholder}
+            name="search"
+            id="search"
+            type="search"
+            // value={
+            //   (table.getColumn(searchColumn)?.getFilterValue() as string) ?? ""
+            // }
+            // onChange={(event) =>
+            //   table.getColumn(searchColumn)?.setFilterValue(event.target.value)
+            // }
+            value={search}
+            onChange={(event) => setSearch(event.target.value)}
+            className="max-w-sm"
+          />
+        </Form>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="outline" className="ml-auto">
@@ -287,7 +192,7 @@ export function DataTable({
                   colSpan={columns.length}
                   className="h-24 text-center"
                 >
-                  No results.
+                  <TableSkeleton />
                 </TableCell>
               </TableRow>
             )}
@@ -303,16 +208,30 @@ export function DataTable({
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={() => {
+              table.previousPage();
+              if (prevPageUrl) {
+                const cursor = prevCursor;
+                window.history.pushState({}, "", `?cursor=${cursor}`);
+                navigate(`?cursor=${prevCursor}`);
+              }
+            }}
+            disabled={!prevCursor}
           >
             Previous
           </Button>
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
+            onClick={() => {
+              table.nextPage();
+              if (nextPageUrl) {
+                const cursor = nextCursor;
+                window.history.pushState({}, "", `?cursor=${cursor}`);
+                navigate(`?cursor=${nextCursor}`);
+              }
+            }}
+            disabled={!nextCursor}
           >
             Next
           </Button>
