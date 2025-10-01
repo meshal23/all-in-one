@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronRight, type LucideIcon } from "lucide-react";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 
 import {
   Collapsible,
@@ -52,10 +52,7 @@ export function NavMain({
                 to={item.url}
               >
                 <CollapsibleTrigger asChild>
-                  <SidebarMenuButton
-                    className="font-bold"
-                    tooltip={item.title}
-                  >
+                  <SidebarMenuButton className="font-bold" tooltip={item.title}>
                     {item.icon && <item.icon />}
                     <span>{item.title}</span>
                     {item.items && (
@@ -71,24 +68,27 @@ export function NavMain({
                   </div> */}
                 </CollapsibleTrigger>
               </NavLink>
-              {/* <CollapsibleContent>
-                <SidebarMenuSub>
-                  {item.items?.map((subItem) => (
+              <CollapsibleContent>
+                {item.items?.map((subItem) => (
+                  <SidebarMenuSub>
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
+                      <SidebarMenuSubButton
+                        onClick={(e) => e.stopPropagation()}
+                        asChild
+                      >
                         <NavLink
-                          // className={({ isActive }) =>
-                          //   isActive ? "active" : ""
-                          // }
                           to={subItem.url}
+                          className={({ isActive }) =>
+                            isActive ? "sub-active" : ""
+                          }
                         >
                           <span>{subItem.title}</span>
                         </NavLink>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
-                  ))}
-                </SidebarMenuSub>
-              </CollapsibleContent> */}
+                  </SidebarMenuSub>
+                ))}
+              </CollapsibleContent>
             </SidebarMenuItem>
           </Collapsible>
         ))}
