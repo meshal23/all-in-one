@@ -20,16 +20,31 @@ class ItemMasterService {
     }
   };
 
-  getAll = async () => {
+  getAll = async (cursor: string | null = null) => {
     try {
       const response = await axiosInstance({
         method: "get",
-        url: `${API_URL}item-master`,
+        url: cursor
+          ? `${API_URL}item-master?cursor=${cursor}`
+          : `${API_URL}item-master`,
       });
       return response.data.items;
     } catch (e) {
       const error = e instanceof Error ? e.message : String(e);
       throw e;
+    }
+  };
+
+  search = async (search: string | null = null) => {
+    try {
+      const response = await axiosInstance({
+        method: "get",
+        url: `${API_URL}item-master?search=${search}`,
+      });
+      return response.data?.items;
+    } catch (e) {
+      const error = e instanceof Error ? e.message : String(e);
+      throw error;
     }
   };
 }
