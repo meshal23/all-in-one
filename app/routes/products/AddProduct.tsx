@@ -142,7 +142,10 @@ const AddProduct = () => {
           <Button
             variant="secondary"
             type="button"
-            onClick={() => navigate("step-1")}
+            onClick={() => {
+              stepper.prev();
+              navigate(`step-${stepper.current.step_no - 1}`);
+            }}
             disabled={stepper.isFirst}
           >
             Back
