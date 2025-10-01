@@ -22,11 +22,16 @@ import {
   Layers,
   CircleQuestionMark,
   Aperture,
+  Users,
+  UserCog,
+  ScanBarcode,
+  Store,
+  Calculator,
 } from "lucide-react";
 
 import { NavMain } from "~/components/nav-main";
 import { NavProjects } from "~/components/nav-projects";
-import  NavUser  from "~/components/nav-user";
+import NavUser from "~/components/nav-user";
 import { TeamSwitcher } from "~/components/team-switcher";
 import {
   Sidebar,
@@ -69,132 +74,150 @@ const data = {
       isActive: true,
     },
     {
-      title: "Slider",
-      url: "/slider",
+      title: "Invoice",
+      url: "/invoice",
+      icon: Calculator,
+      isActive: true,
+    },
+    {
+      title: "Item & Services",
+      url: "/item-master",
       icon: Images,
       isActive: true,
-      // items: [
-      //   {
-      //     title: "History",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Starred",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Settings",
-      //     url: "#",
-      //   },
-      // ],
+      items: [
+        {
+          title: "Item & Service",
+          url: "/item-master",
+        },
+        {
+          title: "Category",
+          url: "/item-category",
+        },
+        {
+          title: "Brand",
+          url: "/item-brand",
+        },
+        // {
+        //   title: "Color",
+        //   url: "#",
+        // },
+        // {
+        //   title: "Unit",
+        //   url: "#",
+        // },
+        // {
+        //   title: "Size",
+        //   url: "#",
+        // },
+      ],
     },
     {
-      title: "Brand Image",
+      title: "Stocks",
       url: "/brands",
-      icon: Aperture,
-      // items: [
-      //   {
-      //     title: "Genesis",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Explorer",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Quantum",
-      //     url: "#",
-      //   },
-      // ],
+      icon: Store,
+      items: [
+        {
+          title: "GRN",
+          url: "#",
+        },
+        {
+          title: "Stock In",
+          url: "#",
+        },
+        {
+          title: "Stock Dashboard",
+          url: "#",
+        },
+        {
+          title: "Sales Quotation",
+          url: "#",
+        },
+        {
+          title: "Stock Issue",
+          url: "#",
+        },
+      ],
     },
     {
-      title: "Advertistment",
+      title: "Customers",
       url: "/advertistment",
-      icon: Megaphone,
-      // items: [
-      //   {
-      //     title: "Introduction",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Get Started",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Tutorials",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Changelog",
-      //     url: "#",
-      //   },
-      // ],
+      icon: Users,
+      items: [
+        {
+          title: "Customers",
+          url: "#",
+        },
+        {
+          title: "Payment Reciept",
+          url: "#",
+        },
+        {
+          title: "Sales Return",
+          url: "#",
+        },
+      ],
     },
     {
-      title: "Delivery Location",
+      title: "Suppliers",
       url: "/delivery-location",
-      icon: Truck,
-      // items: [
-      //   {
-      //     title: "General",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Team",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Billing",
-      //     url: "#",
-      //   },
-      //   {
-      //     title: "Limits",
-      //     url: "#",
-      //   },
-      // ],
+      icon: UserCog,
+      items: [
+        {
+          title: "Supplier",
+          url: "#",
+        },
+        {
+          title: "Payment Voucher",
+          url: "#",
+        },
+        {
+          title: "Purchase return",
+          url: "#",
+        },
+      ],
     },
+    // {
+    //   title: "Payment Types",
+    //   url: "/payment-types",
+    //   icon: CreditCard,
+    //   isActive: true,
+    // },
+    // {
+    //   title: "Coupon/Voucher",
+    //   url: "/coupon-voucher",
+    //   icon: TicketCheck,
+    //   isActive: true,
+    // },
+    // {
+    //   title: "Ecom Products",
+    //   url: "/products",
+    //   icon: ShoppingCart,
+    //   isActive: true,
+    // },
     {
-      title: "Payment Types",
-      url: "/payment-types",
-      icon: CreditCard,
-      isActive: true,
-    },
-    {
-      title: "Coupon/Voucher",
-      url: "/coupon-voucher",
-      icon: TicketCheck,
-      isActive: true,
-    },
-    {
-      title: "Ecom Products",
-      url: "/products",
-      icon: ShoppingCart,
-      isActive: true,
-    },
-    {
-      title: "Product Promo",
+      title: "Barcode",
       url: "/promotion",
-      icon: Tags,
+      icon: ScanBarcode,
       isActive: true,
     },
-    {
-      title: "Deal Of The Day",
-      url: "/dotd",
-      icon: Gift,
-      isActive: true,
-    },
-    {
-      title: "Blog",
-      url: "/blog",
-      icon: Layers,
-      isActive: true,
-    },
-    {
-      title: "FAQ",
-      url: "/faq",
-      icon: CircleQuestionMark,
-      isActive: true,
-    },
+    // {
+    //   title: "Deal Of The Day",
+    //   url: "/dotd",
+    //   icon: Gift,
+    //   isActive: true,
+    // },
+    // {
+    //   title: "Blog",
+    //   url: "/blog",
+    //   icon: Layers,
+    //   isActive: true,
+    // },
+    // {
+    //   title: "FAQ",
+    //   url: "/faq",
+    //   icon: CircleQuestionMark,
+    //   isActive: true,
+    // },
   ],
   // projects: [
   //   {
@@ -223,7 +246,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {/* <NavProjects projects={data.projects} /> */}
+        {/* <NavProjects projects={data.user} /> */}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
