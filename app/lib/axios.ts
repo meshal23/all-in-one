@@ -9,6 +9,7 @@ const axiosInstance = axios.create({
   withXSRFToken: true,
   headers: {
     Accept: "application/json",
+    LocationCode: "1001",
     // "X-XSRF-TOKEN": Cookies.get("XSRF-TOKEN"),
   },
 });
