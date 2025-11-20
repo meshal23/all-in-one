@@ -8,7 +8,7 @@ export const loadItemCategoryOptions = async () => {
     const response = await ItemCategoryService.getAll();
     console.log(response);
 
-    return response?.map((category: any) => {
+    return response?.data.map((category: any) => {
       return { value: category.code, label: category.name };
     });
   } catch (e) {
