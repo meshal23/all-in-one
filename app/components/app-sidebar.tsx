@@ -113,12 +113,12 @@ const data = {
     },
     {
       title: "Stocks",
-      url: "/brands",
+      url: "/grn",
       icon: Store,
       items: [
         {
           title: "GRN",
-          url: "#",
+          url: "/grn",
         },
         {
           title: "Stock In",
@@ -140,39 +140,40 @@ const data = {
     },
     {
       title: "Customers",
-      url: "/advertistment",
+      url: "/customer",
       icon: Users,
       items: [
         {
           title: "Customers",
-          url: "#",
+          url: "/customer",
         },
         {
           title: "Payment Reciept",
-          url: "#",
+          url: "/payment-reciept",
         },
+
         {
           title: "Sales Return",
-          url: "#",
+          url: "/sales-return",
         },
       ],
     },
     {
       title: "Suppliers",
-      url: "/delivery-location",
+      url: "/supplier",
       icon: UserCog,
       items: [
         {
           title: "Supplier",
-          url: "#",
+          url: "/supplier",
         },
         {
           title: "Payment Voucher",
-          url: "#",
+          url: "/payment-voucher",
         },
         {
           title: "Purchase return",
-          url: "#",
+          url: "/purchase-return",
         },
       ],
     },
