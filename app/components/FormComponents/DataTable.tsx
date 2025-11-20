@@ -40,6 +40,7 @@ import {
 import { Form, useNavigate } from "react-router";
 import TableSkeleton from "../main/TableSkeleton";
 import type { Route } from "../../routes/products/+types/TheProduct";
+import { Separator } from "../ui/separator";
 
 // export async function clientLoader({ request }: Route.ClientLoaderArgs) {
 //   const url = new URL(request.url);
@@ -104,8 +105,8 @@ export function DataTable({
 
   return (
     <div className="w-full">
-      <div className="flex items-center py-4">
-        <Form method="get" role="search">
+      <div className="block sm:flex items-center py-4">
+        <Form method="get" role="search" className="flex gap-2">
           <Input
             placeholder={searchPlaceholder}
             name="search"
@@ -121,10 +122,23 @@ export function DataTable({
             onChange={(event) => setSearch(event.target.value)}
             className="max-w-sm"
           />
+          <Button type="submit" className="block sm:hidden">
+            Submit
+          </Button>
+          <Button
+            type="submit"
+            className="bg-red-700 hover:bg-red-600"
+            onClick={(event) => setSearch("")}
+          >
+            Clear
+          </Button>
         </Form>
+
+        <Separator className="text-blue-900 mt-3 w-1/4 block sm:hidden" />
+
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="ml-auto">
+            <Button variant="outline" className="ml-auto mt-2">
               Columns <ChevronDown />
             </Button>
           </DropdownMenuTrigger>
