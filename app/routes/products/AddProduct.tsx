@@ -6,7 +6,7 @@ import { ImageUp, PackagePlus, Wallet } from "lucide-react";
 import { Separator } from "~/components/ui/separator";
 import axiosInstance from "~/lib/axios";
 import ItemMasterService from "~/Services/ItemMasterService/ItemMasterService";
-import type { CreateProductFormType } from "./ProductType/ProductFormType";
+import type { CreateProductFormType } from "./types/ProductFormType";
 
 const { useStepper, steps, utils } = defineStepper(
   {
@@ -119,7 +119,9 @@ const AddProduct = () => {
                     <ImageUp />
                   )}
                 </Button>
-                <span className="text-sm font-medium">{step.title}</span>
+                <span className="text-sm font-medium hidden sm:block">
+                  {step.title}
+                </span>
               </li>
               {index < array.length - 1 && (
                 <Separator
