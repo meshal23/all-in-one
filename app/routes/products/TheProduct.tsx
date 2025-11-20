@@ -6,7 +6,7 @@ import { Await, Outlet, useNavigate, useSearchParams } from "react-router";
 import { DataTable } from "~/components/FormComponents/DataTable";
 import type { Route } from "./+types/TheProduct";
 import ItemMasterService from "~/Services/ItemMasterService/ItemMasterService";
-import type { ShowProductType } from "./ProductType/ShowProductType";
+import type { ShowProductType } from "./types/ShowProductType";
 
 import type { ColumnDef } from "@tanstack/react-table";
 import { Checkbox } from "~/components/ui/checkbox";

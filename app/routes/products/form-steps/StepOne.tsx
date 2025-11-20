@@ -10,6 +10,7 @@ import {
 import { Textarea } from "~/components/ui/textarea";
 import { Switch } from "~/components/ui/switch";
 import { Label } from "~/components/ui/label";
+import type { CreateProductFormType } from "../types/ProductFormType";
 
 const StepOne = () => {
   // the any type will be changed by the formdata type define by ts
@@ -222,7 +223,7 @@ const StepOne = () => {
             }}
           </form.Field>
         </div>
-        <div className="mt-8 flex gap-5">
+        <div className="mt-8 flex flex-wrap gap-5">
           <form.Field name="itemType" validators={{ onChange: () => {} }}>
             {(field) => {
               return (
@@ -316,7 +317,7 @@ const StepOne = () => {
           <form.Field name="isBatch" validators={{ onChange: () => {} }}>
             {(field) => {
               return (
-                <div className="flex gap-2 items-center mb-4">
+                <div className="flex flex-wrap gap-2 items-center mb-4">
                   {/* <input
                     id="default-checkbox"
                     type="checkbox"

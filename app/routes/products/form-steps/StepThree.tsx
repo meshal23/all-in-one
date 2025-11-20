@@ -1,5 +1,6 @@
 import React from "react";
 import { useOutletContext } from "react-router";
+import type { CreateProductFormType } from "../types/ProductFormType";
 
 const StepThree = () => {
   const { formData, setFormData } = useOutletContext<{

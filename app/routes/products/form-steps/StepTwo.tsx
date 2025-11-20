@@ -2,6 +2,7 @@ import { useForm } from "@tanstack/react-form";
 import React from "react";
 import { useOutletContext } from "react-router";
 import TextInput from "~/components/FormComponents/TextInput";
+import type { CreateProductFormType } from "../types/ProductFormType";
 
 const StepTwo = () => {
   const { formData, setFormData } = useOutletContext<{
