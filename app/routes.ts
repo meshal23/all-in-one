@@ -13,12 +13,7 @@ export default [
       route("/admin", "routes/AdminDashboard.tsx"),
       route("/brands", "routes/brands/TheBrands.tsx"),
       route("/advertistment", "routes/advertistment/TheAdvertistment.tsx"),
-      route(
-        "/delivery-location",
-        "routes/delivery-location/TheDeliveryLocation.tsx"
-      ),
       route("/payment-types", "routes/payment-types/ThePaymentTypes.tsx"),
-      route("/coupon-voucher", "routes/coupon-voucher/TheCouponVoucher.tsx"),
       route("/item-master", "routes/products/TheProduct.tsx", [
         route("add-product", "routes/products/AddProduct.tsx", [
           route("step-1", "routes/products/form-steps/StepOne.tsx"),
@@ -32,8 +27,26 @@ export default [
       route("/item-brand", "routes/item-brand/TheItemBrand.tsx", [
         route("add-item-brand", "routes/item-brand/AddItemBrand.tsx"),
       ]),
-      route("/dotd", "routes/deal-of-the-day/TheDealOfTheDay.tsx"),
-      route("/blog", "routes/blog/TheBlog.tsx"),
+      route("/customer", "routes/customer/TheCustomer.tsx", [
+        route("add-customer", "routes/customer/AddCustomer.tsx", [
+          route("step-1", "routes/customer/form-steps/StepOne.tsx"),
+          route("step-2", "routes/customer/form-steps/StepTwo.tsx"),
+        ]),
+      ]),
+      route("/supplier", "routes/supplier/TheSupplier.tsx", [
+        route("add-supplier", "routes/supplier/AddSupplier.tsx", [
+          route("step-1", "routes/supplier/form-steps/StepOne.tsx"),
+          route("step-2", "routes/supplier/form-steps/StepTwo.tsx"),
+        ]),
+      ]),
+      route("/grn", "routes/grn/TheGrn.tsx", [
+        route("add-grn", "routes/grn/AddGrn.tsx", [
+          route("step-1", "routes/grn/form-steps/StepOne.tsx"),
+          route("step-2", "routes/grn/form-steps/StepTwo.tsx"),
+        ]),
+      ]),
+      route("/payment-reciept", "routes/payment-reciept/ThePaymentReciept.tsx"),
+      route("/sales-return", "routes/sales-return/TheSalesReturn.tsx"),
       route("/faq", "routes/faq/TheFAQ.tsx"),
     ]),
   ]),
